@@ -4,12 +4,13 @@ import psycopg2
 from app.main.forms import LoginForm
 from app.models import *
 from flask import render_template,redirect,url_for,jsonify,flash
+import os
 
 from app.extensions import bcrypt
 
 #connect to databse
 def get_db_connect():
-    conn = psycopg2.connect(dbname='users', user='postgres', host='localhost', password='Machine81', port=5432)
+    conn = psycopg2.connect(dbname=os.environ.get('DBNAME'), user=os.environ.get('USER'), host=os.environ.get('LOCALHOST'), password=os.environ.get('PASSWORD'), port=os.environ.get('PORT'))
     cur = conn.cursor()
     return cur
 
