@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+   
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Home</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <link rel="stylesheet" href="{{url_for('static',filename = 'css/style.css')}}">
+ 
+    </head>
+
+    <body>
+            
+           
+         {% block content %}
+            <div class = 'container-fluid'>
+                <div class = 'row'>
+                    <div class = 'col'>
+                        WeBook API Sign Up
+                    </div>
+                </div>
+            </div>
+
+            <div class = 'container-fluid'>
+                <form method = 'POST' action='' name ='login_form'>
+                    <div class ='formClass'>
+                            <div class="row ">
+                                <div class ='col'>
+                                {{signup_form.csrf_token() }}<br>
+                                </div>
+                            </div> 
+            
+                            <div class ='row mt-5'>
+                                <div class = 'col-6'>
+                                {{signup_form.user_email.label}}<br>
+                                {{signup_form.user_email}}
+                                </div>
+                            </div>
+            
+                            <div class = 'row mt-5'>
+                                <div class = 'col'>
+                                {{signup_form.email_password.label}}<br>
+                                {{signup_form.email_password}}
+                                </div>
+                            </div>
+            
+            
+                            <div class = 'row mt-3'>
+                                <div class = 'col' >
+                                    {{signup_form.create_account(class = 'button_')}}
+                                
+                                    {% if error %}
+                                        <div class ='row'>
+                                            <div class ='col'>
+                                                <span id = 'loginError'> email doesnt exist</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                
+                                </div>
+                            </div>
+                    </div>
+                </form>
+            </div>
+            {% endblock %}
+    </body>
+   
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = 'container-fluid'>
+    <div class = 'row justify-content-center'>
+        <div class = 'col-3'>
+            <span id = 'apiFont'>
+                API Calls
+            </span>
+        </div>
+    </div>
+</div>
+
+    <div class = 'container-fluid'>
+        <div class = 'row mt-5 justify-content-center' >
+            <div class = 'col-3'>
+                <a  class = "btn btn-warning" href="{{url_for('auth.get_users')}}" > user data </a>
+            </div>
+        </div>
+  
+
+  
+        <div class = 'row mt-5 justify-content-center' >
+            <div class = 'col-3'>
+                <a  class = "btn btn-warning" href="{{url_for('auth.get_parks')}}" > parks data </a>
+            </div>
+        </div>
+
+
+   
+        <div class = 'row mt-5 justify-content-center' >
+            <div class = 'col-3'>
+                <a  class = "btn btn-warning" href="{{url_for('auth.get_sites')}}" > sites data </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
