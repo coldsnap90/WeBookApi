@@ -1,18 +1,19 @@
 from app.auth import auth
-from flask import jsonify,request,render_template,flash
 from flask_login import login_user, current_user, logout_user, login_required
 import psycopg2
 from app.main.forms import LoginForm
 from app.models import *
-from flask import render_template,request,redirect,url_for,session,current_app
+from flask import render_template,redirect,url_for,jsonify,flash
+
 from app.extensions import bcrypt
 
-
+#connect to databse
 def get_db_connect():
     conn = psycopg2.connect(dbname='users', user='postgres', host='localhost', password='Machine81', port=5432)
     cur = conn.cursor()
     return cur
 
+#login route
 @auth.route('/login',methods =['GET','POST'])
 def login():
     form = LoginForm()
@@ -27,6 +28,15 @@ def login():
             print('Email doesnt exist')
     return render_template('login.html',login_form=form)
 
+#logout route
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
+
+
+#confirm email jwt token
 @auth.route('/confirm/<token>',methods=['GET','POST'])
 def confirm(token):
     user_id = User.get_id(current_user)
@@ -39,13 +49,16 @@ def confirm(token):
         return redirect(url_for('auth.login'))
     return render_template('confirmation.html',token=token)
 
+#api call link
 @auth.route('/api-call')
+@login_required
 def api_call():
     return render_template('api_call.html')
 
+#get user data
 @auth.route('/get-users',methods =['GET'])
+@login_required
 def get_users():
-  
     cur = get_db_connect()
     cur.execute('SELECT * FROM users;')
     users = cur.fetchall()
@@ -58,6 +71,7 @@ def get_users():
    
     return jsonify(user_data)
 
+#get park data
 @auth.route('/get-parks',methods =['GET'])
 @login_required
 def get_parks():
@@ -71,6 +85,7 @@ def get_parks():
 
     return jsonify(parks_data)
 
+#get site data
 @auth.route('/get-sites',methods =['GET'])
 @login_required
 def get_sites():

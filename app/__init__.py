@@ -1,8 +1,8 @@
 from flask import Flask
 from app.config import Config
-from .extensions import db,csrf,login_manager,bcrypt,migrate,mail
+from .extensions import db,csrf,login_manager,bcrypt,mail
 
-
+#creating app
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -13,17 +13,11 @@ def create_app(config_class=Config):
         login_manager.init_app(app)
         mail.init_app(app)
 
-
-       
-        #makes these two blueprints
-        
-        
+        #import issues regarding application factory, putting these here seems to solve it
         from app.auth import auth as auth_blueprint
         from app.main import main as main_blueprint
     
         app.register_blueprint(auth_blueprint,url_prefix='/auth',templates_folder='templates')
         app.register_blueprint(main_blueprint,url_prefix='/',templates_folder='templates')
         db.create_all()
-        
-        #app.cli.add_command('create_tables')
     return app

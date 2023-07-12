@@ -1,13 +1,13 @@
 
 from app.main import main
-from flask import render_template,request,make_response,redirect,url_for,session,current_app
+from flask import render_template,request,redirect,url_for
 from app.main.forms import signupForm
 from app.models import *
-from flask_login import login_user, current_user, logout_user, login_required
-from datetime import datetime, timezone, timedelta
+from flask_login import current_user
 from app.extensions import bcrypt
 
 
+#create user
 @main.route('/',methods =['GET','POST'])
 def create_user():
     form = signupForm()
@@ -23,7 +23,7 @@ def create_user():
         return redirect(url_for('auth.login'))  
     return render_template('base.html',signup_form=signUpForm)
 
-
+#send me func
 def send_link(*args):
     new_user = args[0]
     token = new_user.generate_confirmation_token()

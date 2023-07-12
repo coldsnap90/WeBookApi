@@ -5,11 +5,12 @@ import jwt
 from datetime import datetime, timezone, timedelta
 
 
-
+#login manager
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+#user class
 class User(db.Model,UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
@@ -20,22 +21,12 @@ class User(db.Model,UserMixin):
     def __repr__(self):
         return f"{self.id}, {self.email},{self.password}"
     
-    def send_link(self,user):
-        token = self.generate_confirmation_token()
-        msg = Message('Campsite booking Notifier',
-                    recipients=[user.email])
-        confirmation_link = url_for('auth.booking_info',token=token,_external=True)
-        msg.body = f'''Your site has been booked, follow the link for details:
-    {confirmation_link}
-    If you did not make this request then simply ignore this email and no changes will be made.
-     '''
-        mail.send(msg)
-
+    #generate jwt token
     def generate_confirmation_token(self,expiration=1000000):
         data = {'confirm': self.id,'exp': datetime.now(timezone.utc) + timedelta(seconds=expiration)}
         return jwt.encode(data, current_app.config['SECRET_KEY'], algorithm="HS256")
    
-    
+   #confirm token
     def token_confirm(self, token, leeway=10):
         try:
             data = jwt.decode(token, current_app.config['SECRET_KEY'], leeway=leeway, algorithms=["HS256"])
@@ -44,7 +35,7 @@ class User(db.Model,UserMixin):
         if data.get('confirm') != self.id:
             return False
         return True
-    
+    #verify token
     @staticmethod
     def verify_auth_token(token, leeway=10):
         try:
