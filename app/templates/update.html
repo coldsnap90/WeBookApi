@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method = 'POST' action='' name ='login_form'>
+    <div class ='formClass'>
+            <div class="row mt-5">
+                <div class ='col'>
+                {{api_request.csrf_token() }}<br>
+                </div>
+            </div> 
+
+            <div class ='row mt-3 justify-content-center'>
+                <div class = 'col-4'>
+                {{api_request.id.label}}<br>
+                {{api_request.id}}
+                </div>
+            </div>
+
+            <div class ='row mt-3 justify-content-center'>
+                <div class = 'col-4'>
+                {{api_request.email.label}}<br>
+                {{api_request.email}}
+                </div>
+            </div>
+
+            <div class = 'row mt-3 justify-content-center'>
+                <div class = 'col-4'>
+                {{api_request.email_password.label}}<br>
+                {{api_request.email_password}}
+                </div>
+            </div>
+
+
+            <div class = 'row mt-3 justify-content-center'>
+                <div class = 'col-4' >
+                    {{api_request.submit(class = 'button_')}}
+                
+                    {% if error %}
+                        <div class ='row mt-3 justify-content-center'>
+                            <div class ='col-4'>
+                                <span id = 'loginError'> error </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                
+                </div>
+            </div>
+    </div>
+</form>
+{% endblock %}

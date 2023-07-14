@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class = 'container-fluid'>
+    <div class = 'row justify-content-center'>
+        <div class = 'col-4'>
+            <span id = 'apiFont'>
+                WeBook API park call
+            </span>
+        </div>
+    </div>
+</div>
+
+<form method = 'POST' action='' name ='login_form'>
+    <div class ='formClass'>
+            <div class="row mt-5">
+                <div class ='col'>
+                {{form.csrf_token() }}<br>
+                </div><div class = 'container-fluid'>
+                    <div class = 'row justify-content-center'>
+                        <div class = 'col-4'>
+                            <span id = 'apiFont'>
+                                WeBook API park delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div class ='row mt-3 justify-content-center'>
+                <div class = 'col-4'>
+                {{form.id.label}}<br>
+                {{form.id}}
+                </div>
+            </div>
+
+            <div class ='row mt-3 justify-content-center'>
+                <div class = 'col-4'>
+                {{form.park.label}}<br>
+                {{form.park}}
+                </div>
+            </div>
+
+          
+
+            <div class = 'row mt-3 justify-content-center'>
+                <div class = 'col-4' >
+                    {{form.api_submit(class = 'button_')}}
+            
+                    {% if error %}
+                        <div class ='row mt-3 justify-content-center'>
+                            <div class ='col-4'>
+                                <span id = 'loginError'> error </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                
+                </div>
+            </div>
+    </div>
+</form>
+{% endblock %}

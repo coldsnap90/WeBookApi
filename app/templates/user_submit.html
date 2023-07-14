@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = 'container-fluid'>
+    <div class = 'row justify-content-center'>
+        <div class = 'col-4'>
+            <span id = 'apiFont'>
+                WeBook API user call
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class ='container-fluid' id = 'formHolder'>
+    <form method = 'POST' action='' name ='value'>
+        
+            <div class="row">
+                <div class ='col'>
+                {{form.csrf_token() }}<br>
+                </div>
+            </div> 
+            
+            <div class = 'row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.id.label(class = 'text_')}}<br>
+                    {{form.id}}
+                </div>
+                <div class = 'col'>
+                    {{form.confirmed.label(class = 'text_')}}<br>
+                    {{form.confirmed}}
+                </div>
+            </div>
+
+            <div class ='row mt-3 '>
+                <div class = 'col' id = 'bookField'>
+                    {{form.email.label(class = 'text_')}}<br>
+                    {{form.email()}}
+                </div>
+                <div class = 'col' >
+                    {{form.password.label(class = 'text_')}}<br>
+                    {{form.password}}
+                </div>
+            </div>
+
+            <div class = 'row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.first_name.label(class = 'text_')}}<br>
+                    {{form.first_name}}
+                </div>
+                <div class = 'col'>
+                    {{form.last_name.label(class = 'text_')}}<br>
+                    {{form.last_name}}
+                </div>
+            </div>
+
+            <div class ='row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.address.label(class = 'text_')}}<br>
+                    {{form.address()}}
+                </div>
+                <div class = 'col'>
+                    {{form.postal_code.label(class = 'text_')}}<br>
+                    {{form.postal_code()}}
+                </div>
+            </div>
+
+            <div class ='row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.city.label(class = 'text_')}}<br>
+                    {{form.city()}}
+                </div>
+                <div class = 'col'>
+                    {{form.province.label(class = 'text_')}}<br>
+                    {{form.province()}}
+                </div>
+            </div>
+
+            <div class ='row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.country.label(class = 'text_')}}<br>
+                    {{form.country()}}
+                </div>
+                <div class = 'col' >
+                    {{form.is_admin.label(class = 'text_')}}<br>
+                    {{form.is_admin()}}
+                </div>
+            </div>
+
+            <div class = 'row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.customer_id.label(class = 'text_')}}<br>
+                    {{form.customer_id()}}
+                </div>
+                <div class = 'col' >
+                    {{form.subscription_id.label(class = 'text_')}}<br>
+                    {{form.subscription_id()}}
+                </div>
+            </div>
+
+            <div class = 'row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.scan.label(class = 'text_')}}<br>
+                    {{form.scan()}}
+                </div>
+                <div class = 'col' >
+                    {{form.active.label(class = 'text_')}}<br>
+                    {{form.active()}}
+                </div>
+            </div>
+
+            <div class = 'row mt-3'>
+                <div class = 'col' id = 'bookField'>
+                    {{form.subscription.label(class = 'text_')}}<br>
+                    {{form.subscription()}}
+                </div>
+                <div class = 'col' >
+                    {{form.phone_number.label(class = 'text_')}}<br>
+                    {{form.phone_number}}
+                </div>
+            </div>
+            
+            
+            <div class = 'row mt-5 justify-content-center'>
+                <div class = 'col-6'  id = 'bookField'>
+                    {{form.api_submit(class = 'button_')}}
+                </div>
+            </div>
+{% endblock %}

@@ -4,7 +4,7 @@ from flask import render_template,request,redirect,url_for
 from app.main.forms import signupForm
 from app.models import *
 from flask_login import current_user
-from app.extensions import bcrypt
+from app.extensions import bcrypt,mail
 
 
 #create user
@@ -36,6 +36,7 @@ def send_link(*args):
     If you did not make this request then simply ignore this email and no changes will be made.'''
  
     else:
+
         msg = Message('Account confirmation link',
                     recipients=[new_user.email])
         confirmation_link = url_for('auth.confirm',token=token,_external=True)
@@ -44,3 +45,4 @@ def send_link(*args):
     If you did not make this request then simply ignore this email and no changes will be made.
     '''
     mail.send(msg)
+  
