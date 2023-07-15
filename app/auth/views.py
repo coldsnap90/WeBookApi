@@ -14,10 +14,8 @@ from app.extensions import bcrypt
 def get_db_connect():
     while True:
         try:
-            print('db')
             conn = psycopg2.connect(dbname=os.environ.get('DBNAME'), user=os.environ.get('USER'), host=os.environ.get('LOCALHOST'), password=os.environ.get('PASSWORD'), port=os.environ.get('PORT'),cursor_factory = RealDictCursor)
             cur = conn.cursor()
-            print('db1')
             return conn,cur
         except Exception as error:
             print('Connecting to DB failed')
