@@ -1,5 +1,5 @@
-from flask import current_app,url_for
-from app.extensions import login_manager,db,Message
+from flask import current_app
+from app.extensions import login_manager,db
 from flask_login import UserMixin
 import jwt
 from datetime import datetime, timezone, timedelta

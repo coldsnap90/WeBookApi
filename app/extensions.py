@@ -16,4 +16,5 @@ migrate = Migrate()
 csrf = CSRFProtect()
 mail = Mail()
 migrate = Migrate()
+csrf = CSRFProtect()
 

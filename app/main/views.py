@@ -5,6 +5,7 @@ from app.main.forms import signupForm
 from app.models import *
 from flask_login import current_user
 from app.extensions import bcrypt,mail
+from flask_mail import Message
 
 
 #create user
